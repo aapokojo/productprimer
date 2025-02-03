@@ -26,21 +26,22 @@
         h1,h2,h3 {
             font-family: "Shippori Mincho", serif;
             font-weight: 600;
-            font-style: normal;
         }
+        h2 {
+            font-size: larger;
+            scroll-margin-top: 48px;
+            }
         h4 {
             margin-top: -16px;
             font-family: "Inter", serif;
             font-optical-sizing: auto;
             font-weight: 600;
-            font-style: normal;
             color: #c99;
         }
         div {
             font-family: "Inter", serif;
             font-optical-sizing: auto;
             font-weight: 400;
-            font-style: normal;
             padding-bottom: 16px;
         }
         .footer {
@@ -113,7 +114,7 @@
 <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
 
 <nav id="toc">
-    <h3><a href="#content" onclick="toggleMenu()">Product Primer</a></h3>
+    <h3><a href="#starterguide" onclick="toggleMenu()">Product Primer</a></h3>
     <h4>Contents</h4>
     <div><a href="#introduction" onclick="toggleMenu()">Introduction</a></div>
     <div><a href="#abouttheauthor" onclick="toggleMenu()">About the Author</a></div>
@@ -122,6 +123,7 @@
     <h4>Finding the key value proposition</h4>
     <div><a href="#users" onclick="toggleMenu()">Enough users for a sizable audience?</a></div>
     <div><a href="#uniquvalueprop" onclick="toggleMenu()">Finding the Unique Value Proposition</a></div>
+    <div><a href="#keytakeawayspurpose" onclick="toggleMenu()">Key Takeaways</a></div>
     <hr/>
     <div class="footer">
         Product Primer | <a href="mailto:aapo@productprimer.com">aapo@productprimer.com</a>
@@ -129,10 +131,10 @@
 </nav>
 
 <main id="content">
-    <section id="introduction">
+    <section id="starterguide">
         <h1>Product Primer</h1>
         <h4>A Starter Guide to Building Great* Products (*great is not always successful)</h4>
-        <h2>Introduction</h2>
+        <h2 id="introduction">Introduction</h2>
         <div>
         Welcome to Product Primer – <i>A Starter Guide to Building Great Products* (*great is not always successful)</i>. 
         The primer presents a collection of theoretical frameworks and practical methods for product development, 
@@ -178,11 +180,11 @@
         your intended product will be competing with existing ways of working, established habits 
         and products already available at the market - be it your own or your competitors.
         </div>
+        <img src="users.jpg">
         <div>
         Is there a large enough audience for my product, which is currently underserved in the market?
         Can my product offer them something that isn’t offered by anything else out there?
         </div>
-        <img src="users.jpg">
     </section>
 
     <section id="uniquvalueprop">
@@ -200,12 +202,40 @@
         but better features or with a cheaper solution, but fail to look beyond what are the unmet 
         needs and potential to create new innovations.
         </div>
+        <img src="blueocean.jpg">
         <div>
         Blue Ocean strategy framework helps you identify where the current industry competition and investments are the highest - 
         where you should do the minimal investments to offer a minimal level of service, and instead put most of 
         your investments into the areas of your product where you create value beyond what is currently available in the market.
         </div>
-        <img src="blueocean.jpg">
+        <div>
+        Example of a blue ocean strategy from the video streaming space: Founders of Twitch recognized that gamers had unique 
+        needs not met by the then existing incumbent video streaming services, such as YouTube. Twitch focused on 
+        the real-timeness of the video streaming experience, including the live chat. Twitch introduced 
+        new subscription models and donation systems that enabled the content creators to monetise their audience 
+        in a completely new way compared to the incumbent platforms at the time. Essentially Twitch built a platform tailored to 
+        live gameplay, where the audience could interact in real time. This focus allowed them to bypass the crowded 
+        and competitive mainstream streaming market. While YouTube continues to be the largest video streaming platform, 
+        Twitch has created a sizable business from capturing the audience in the live streaming market, 
+        making it the billion dollar business it is today.
+        </div>
+
+    </section>
+
+    <section id="keytakeawayspurpose">
+        <h2>Key Takeaways</h2>
+        <div>
+            Your product does not operate in a vacuum. Users have needs - which are already solved by one way or the other. 
+            Find out what is the minimum you need to invest to match the existing solutions and 
+            put most of your bets in the competing factors other solutions don’t offer.
+        </div>
+        <div>
+            Inspiration and Further Reading:
+        <ul>
+            <li>Clayton Christensen - The Innovator's Solution: Creating and Sustaining Successful Growth</li>
+            <li>W. Chan Kim. Renee Mauborgne - Blue Ocean Strategy: How to Create Uncontested Market Space and Make Competition Irrelevant</li>
+        </ul>
+        </div>
     </section>
 
 </main>
