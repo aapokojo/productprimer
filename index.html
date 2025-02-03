@@ -52,6 +52,10 @@
             color: #422;
             text-decoration: none; 
         }
+        img {
+            max-width: 100%;
+            object-fit: contain;
+        }
         #toc {
             font-family: "Inter", serif;
             font-optical-sizing: auto;
@@ -82,6 +86,7 @@
             top: 10px;
             left: 4px;
             background: #fff;
+            box-shadow: 2px 2px 1px 0 rgba(0, 0, 0, 0.1);
             color: #333;
             padding: 10px;
             border: none;
@@ -97,6 +102,9 @@
             height: 100%;
             z-index: 900;
         }
+        section {
+            scroll-margin-top: 48px;
+        }
     </style>
 </head>
 <body>
@@ -105,10 +113,15 @@
 <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
 
 <nav id="toc">
-    <h3><a href="index.html" onclick="toggleMenu()">Product Primer</a></h3>
+    <h3><a href="#content" onclick="toggleMenu()">Product Primer</a></h3>
     <h4>Contents</h4>
     <div><a href="#introduction" onclick="toggleMenu()">Introduction</a></div>
     <div><a href="#abouttheauthor" onclick="toggleMenu()">About the Author</a></div>
+    <hr/>
+    <h3><a href="#purpose" onclick="toggleMenu()">What is the purpose of the product?</a></h3>
+    <h4>Finding the key value proposition</h4>
+    <div><a href="#users" onclick="toggleMenu()">Enough users for a sizable audience?</a></div>
+    <div><a href="#uniquvalueprop" onclick="toggleMenu()">Finding the Unique Value Proposition</a></div>
     <hr/>
     <div class="footer">
         Product Primer | <a href="mailto:aapo@productprimer.com">aapo@productprimer.com</a>
@@ -144,6 +157,57 @@
         one common thread remains: the commitment to building a great product.
         </div>  
     </section>
+
+    <section id="purpose">
+        <h1>What is the purpose of the product?</h1>
+        <h4>Finding the key value proposition</h4>
+        <h2 id="users">Enough users for a sizable audience?</h2>
+        <div>
+        Ultimately, every single product can be reduced to a specific user need, and hence to an individual user.
+        To make a great product, you need to find out if there is a critical amount of users that have a specific need, 
+        which can be better met with your product, and isn’t served well enough with anything else out there. 
+        Chances here though are against you - there is already very likely a product or a solution the user is equipped 
+        with to tackle their problems and to fulfill their needs.Your job is to figure out a way to provide the users 
+        with something they didn’t know they needed. If they don’t know, how would you then? You might have some ideas, 
+        but how would you know if an idea is worth pursuing for, and worth making into a product?
+        </div>
+        <div>            
+        The space where you are working in, could be anything from enhancing the mobile experience for brick and mortar stores 
+        selling to online marketplaces, building a platform for short form content creators or building tools 
+        to organize the work for reachtstack drivers in a container ship terminal. Whatever the context is, 
+        your intended product will be competing with existing ways of working, established habits 
+        and products already available at the market - be it your own or your competitors.
+        </div>
+        <div>
+        Is there a large enough audience for my product, which is currently underserved in the market?
+        Can my product offer them something that isn’t offered by anything else out there?
+        </div>
+        <img src="users.jpg">
+    </section>
+
+    <section id="uniquvalueprop">
+        <h2>Finding the Unique Value Proposition</h2>
+        <div>
+        Frameworks, like the Blue Ocean / Red Ocean strategy framework, or the work of Clayton Christensen on Innovators Solution, 
+        help you frame your product idea and solution against that existing world, where your users are interacting with existing solutions. 
+        What are the elements of my product that are directly competing against the existing market?  
+        What are the users' existing expectations from a product in the market? What are the elements of my product 
+        that provide value other products currently can’t?
+        </div>
+        <div>            
+        Focusing on the current users, their current needs and how the existing product solves those problems, 
+        you end up iterating on the existing products or offerings - and end up competing with similar, 
+        but better features or with a cheaper solution, but fail to look beyond what are the unmet 
+        needs and potential to create new innovations.
+        </div>
+        <div>
+        Blue Ocean strategy framework helps you identify where the current industry competition and investments are the highest - 
+        where you should do the minimal investments to offer a minimal level of service, and instead put most of 
+        your investments into the areas of your product where you create value beyond what is currently available in the market.
+        </div>
+        <img src="blueocean.jpg">
+    </section>
+
 </main>
 
 <div class="footer">
