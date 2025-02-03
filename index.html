@@ -23,7 +23,7 @@
             padding: 12px;
             line-height: 1.5;
         }
-        h1,h2 {
+        h1,h2,h3 {
             font-family: "Shippori Mincho", serif;
             font-weight: 600;
             font-style: normal;
@@ -45,44 +45,123 @@
         }
         .footer {
             font-weight: 300;
+            font-size: smaller;
             margin-top: 48px;
         }
         a {
             color: #422;
             text-decoration: none; 
         }
+        #toc {
+            font-family: "Inter", serif;
+            font-optical-sizing: auto;
+            font-weight: 400;
+            font-style: normal;
+            width: 200px;
+            background: #f4f4f4;
+            padding: 15px;
+            position: fixed;
+            top: 0;
+            left: -250px;
+            transition: left 0.3s;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 1000;
+        }
+        
+        #content {
+            padding-top: 24px;
+            margin-left: 0;
+            flex: 1;
+        }
+
+        #menu-button {
+            display: block;
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            background: #333;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            z-index: 900;
+        }
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 900;
+        }
     </style>
 </head>
 <body>
 
-<h1>Product Primer</h1>
-<h4>A Starter Guide to Building Great* Products (*great is not always successful)</h4>
-<h2>Introduction</h2>
-<div>
-Welcome to Product Primer – <i>A Starter Guide to Building Great Products* (*great is not always successful)</i>. 
-The primer presents a collection of theoretical frameworks and practical methods for product development, 
-integrating diverse perspectives from technology, creativity, and business strategy. It challenges the conventional notion 
-that a great product is automatically a successful one. Instead, it focuses on what's in your control - empowering 
-you build great products that serve a purpose and solve real problems.
-</div>
-<div>
-The perspectives and advice offered in this primer are highly opinionated, 
-drawn directly from the author's extensive experience in product building. 
-Whether you're a seasoned professional or just starting out, this guide is designed to provoke thought, 
-inspire innovation, and ultimately assist you in crafting products that aim to make a difference.
-</div>
+<button id="menu-button" onclick="toggleMenu()">☰</button>
+<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
 
-<h2>About the author</h2>
-<div>
-Aapo Kojo has nearly two decades of experience in building digital products. 
-Some of the products he has put his work into have achieved success through strong business outcomes, 
-positive user sentiment, or prestigious awards. He has also witnessed the rapid downfall of a business giant 
-and the demise of a nearly successful startup. Throughout these varied experiences, 
-one common thread remains: the commitment to building a great product.
-</div>  
+<nav id="toc">
+    <h3><a href="index.html" onclick="toggleMenu()">Product Primer</a></h3>
+    <h4>Contents</h4>
+    <div><a href="#introduction" onclick="toggleMenu()">Introduction</a></div>
+    <div><a href="#abouttheauthor" onclick="toggleMenu()">About the Author</a></div>
+    <hr/>
+    <div class="footer">
+        Product Primer | <a href="mailto:aapo@productprimer.com">aapo@productprimer.com</a>
+    </div>
+</nav>
+
+<main id="content">
+    <section id="introduction">
+        <h1>Product Primer</h1>
+        <h4>A Starter Guide to Building Great* Products (*great is not always successful)</h4>
+        <h2>Introduction</h2>
+        <div>
+        Welcome to Product Primer – <i>A Starter Guide to Building Great Products* (*great is not always successful)</i>. 
+        The primer presents a collection of theoretical frameworks and practical methods for product development, 
+        integrating diverse perspectives from technology, creativity, and business strategy. It challenges the conventional notion 
+        that a great product is automatically a successful one. Instead, it focuses on what's in your control - empowering 
+        you build great products that serve a purpose and solve real problems.
+        </div>
+        <div>
+        The perspectives and advice offered in this primer are highly opinionated, 
+        drawn directly from the author's extensive experience in product building. 
+        Whether you're a seasoned professional or just starting out, this guide is designed to provoke thought, 
+        inspire innovation, and ultimately assist you in crafting products that aim to make a difference.
+        </div>
+    </section>
+    <section id="abouttheauthor">
+        <h2>About the author</h2>
+        <div>
+        Aapo Kojo has nearly two decades of experience in building digital products. 
+        Some of the products he has put his work into have achieved success through strong business outcomes, 
+        positive user sentiment, or prestigious awards. He has also witnessed the rapid downfall of a business giant 
+        and the demise of a nearly successful startup. Throughout these varied experiences, 
+        one common thread remains: the commitment to building a great product.
+        </div>  
+    </section>
+</main>
 
 <div class="footer">
 Product Primer | <a href="mailto:aapo@productprimer.com">aapo@productprimer.com</a>
 </div>
+
+<script>
+    function toggleMenu() {
+        var toc = document.getElementById("toc");
+        var overlay = document.getElementById("overlay");
+        if (toc.style.left === "0px") {
+            toc.style.left = "-250px";
+            overlay.style.display = "none";
+        } else {
+            toc.style.left = "0px";
+            overlay.style.display = "block";
+        }
+    }
+</script>
+
 </body>
 </html>
