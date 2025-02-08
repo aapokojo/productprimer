@@ -17,27 +17,10 @@
     <link rel="stylesheet" href="style.css">
     <title>Product Primer</title>
 </head>
-<body>
-<script src="menu.js"></script> 
-
-<button id="menu-button" onclick="toggleMenu()">☰</button>
-<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+<body onLoad="initHtml()">
+<script src="script.js"></script> 
 
 <nav id="toc">
-    <h3><a href="#starterguide" onclick="toggleMenu()">Product Primer</a></h3>
-    <h4>Contents</h4>
-    <div><a href="#introduction" onclick="toggleMenu()">Introduction</a></div>
-    <div><a href="#abouttheauthor" onclick="toggleMenu()">About the Author</a></div>
-    <hr/>
-    <h3><a href="#purpose" onclick="toggleMenu()">What is the purpose of the product?</a></h3>
-    <h4>Finding the key value proposition</h4>
-    <div><a href="#users" onclick="toggleMenu()">From user needs to market understanding</a></div>
-    <div><a href="#uniquvalueprop" onclick="toggleMenu()">Finding the Unique Value Proposition</a></div>
-    <div><a href="#keytakeawayspurpose" onclick="toggleMenu()">Key Takeaways</a></div>
-    <hr/>
-    <div class="footer">
-        Product Primer | <a href="mailto:aapo@productprimer.com">aapo@productprimer.com</a>
-    </div>
 </nav>
 
 <main id="content">
@@ -155,12 +138,6 @@
         </ul>
         </div>
     </section>
-
 </main>
-
-<div class="footer">
-Product Primer | <a href="mailto:aapo@productprimer.com">aapo@productprimer.com</a>
-</div>
-
 </body>
 </html>
