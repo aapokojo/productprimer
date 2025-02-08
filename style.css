@@ -87,3 +87,9 @@ img {
 section {
     scroll-margin-top: 48px;
 }
+#pagenavigation {
+    padding-top: 24px;
+    text-align: center;
+    font-size: smaller;
+}
+
