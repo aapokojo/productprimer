@@ -18,6 +18,7 @@
     <title>Product Primer</title>
 </head>
 <body>
+<script src="menu.js"></script> 
 
 <button id="menu-button" onclick="toggleMenu()">☰</button>
 <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
@@ -160,23 +161,6 @@
 <div class="footer">
 Product Primer | <a href="mailto:aapo@productprimer.com">aapo@productprimer.com</a>
 </div>
-
-<script>
-    function toggleMenu() {
-        var toc = document.getElementById("toc");
-        var overlay = document.getElementById("overlay");
-        var body = document.body;
-        if (toc.style.left === "0px") {
-            toc.style.left = "-250px";
-            overlay.style.display = "none";
-            body.style.overflow = "";
-        } else {
-            toc.style.left = "0px";
-            overlay.style.display = "block";
-            body.style.overflow = "hidden";
-        }
-    }
-</script>
 
 </body>
 </html>
