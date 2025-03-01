@@ -6,7 +6,7 @@ function initHtml() {
         '<h3><a href="index.html#starterguide" onclick="toggleMenu()">Product Primer</a></h3>'
         + '<h4>Contents</h4>'
         + '<div><a href="index.html#introduction" onclick="toggleMenu()">Introduction</a></div>'
-        + '<div><a href="index.html#whatisproductwork" onclick="toggleMenu()">What is "Product" work?</a></div>'
+        + '<div><a href="index.html#whatisproductwork" onclick="toggleMenu()">What is <i>Product Work</i>?</a></div>'
         + '<div><a href="index.html#abouttheauthor" onclick="toggleMenu()">About the Author</a></div>'
         + '<hr/>'
         + '<h3><a href="purpose.html#purpose" onclick="toggleMenu()">What is the purpose of the product?</a></h3>'
@@ -26,6 +26,11 @@ function initHtml() {
         + '<div><a href="tactics.html#journeymapping" onclick="toggleMenu()">Mapping your users needs</a></div>'
         + '<div><a href="tactics.html#keytakeawaystactics" onclick="toggleMenu()">Key Takeaways</a></div>'
         + '<hr/>'
+        + '<h3><a href="summary.html" onclick="toggleMenu()">Summary</a></h3>'
+        + '<h4>Rinse and Repeat</h4>'
+        + '<div><a href="summary.html#routine" onclick="toggleMenu()">Embrace the Routine</a></div>'
+        + '<hr/>'        
+        + '<br/>'  
     );
 
     document.body.insertAdjacentHTML('beforeend', '<div class="footer">Product Primer | <a href="mailto:aapo@productprimer.com">aapo@productprimer.com</a></div>');
