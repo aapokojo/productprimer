@@ -15,6 +15,16 @@ function initHtml() {
         + '<div><a href="purpose.html#uniquvalueprop" onclick="toggleMenu()">Finding the Unique Value Proposition</a></div>'
         + '<div><a href="purpose.html#keytakeawayspurpose" onclick="toggleMenu()">Key Takeaways</a></div>'
         + '<hr/>'
+        + '<h3><a href="strategy.html#strategy" onclick="toggleMenu()">How to build a great product?</a></h3>'
+        + '<h4>Creating a Sound Strategy</h4>'
+        + '<div><a href="strategy.html#ways" onclick="toggleMenu()">Ways to get to the purpose</a></div>'
+        + '<div><a href="strategy.html#keytakeawaysstrategy" onclick="toggleMenu()">Key Takeaways</a></div>'
+        + '<hr/>'
+        + '<h3><a href="tactics.html#tactics" onclick="toggleMenu()">What to build</a></h3>'
+        + '<h4>Solving users problems</h4>'
+        + '<div><a href="tactics.html#building" onclick="toggleMenu()">Building Meaningful Solutions</a></div>'
+        + '<div><a href="tactics.html#keytakeawaystactics" onclick="toggleMenu()">Key Takeaways</a></div>'
+        + '<hr/>'
     );
 
     document.body.insertAdjacentHTML('beforeend', '<div class="footer">Product Primer | <a href="mailto:aapo@productprimer.com">aapo@productprimer.com</a></div>');
