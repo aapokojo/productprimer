@@ -26,12 +26,13 @@ div {
     padding-bottom: 16px;
 }
 .footer {
+    color: #422;
     font-weight: 300;
     font-size: smaller;
     margin-top: 48px;
 }
 a {
-    color: #422;
+    color: inherit;
     text-decoration: none; 
 }
 img {
