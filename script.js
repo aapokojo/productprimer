@@ -5,7 +5,7 @@ function initHtml() {
     document.getElementById("toc").insertAdjacentHTML('afterbegin', 
         '<h2>Chapters</h2>'
         + '<hr/>'
-        + '<a href="index.html" onclick="toggleMenu()"><h3>Product Primer</h3>'
+        + '<a href="/" onclick="toggleMenu()"><h3>Product Primer</h3>'
         + '<h4>Introduction</h4></a>'
         + '<hr/>'
         + '<a href="why.html" onclick="toggleMenu()"><h3>Why - The Purpose of the Product</h3>'
