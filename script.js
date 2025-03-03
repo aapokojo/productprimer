@@ -3,9 +3,7 @@ function initHtml() {
     document.body.insertAdjacentHTML('afterbegin', '<div class="overlay" id="overlay" onclick="toggleMenu()"></div>');
     
     document.getElementById("toc").insertAdjacentHTML('afterbegin', 
-        '<h2>Chapters</h2>'
-        + '<hr/>'
-        + '<a href="/" onclick="toggleMenu()"><h3>Product Primer</h3>'
+        '<a href="index.html" onclick="toggleMenu()"><h3>Product Primer</h3>'
         + '<h4>Introduction</h4></a>'
         + '<hr/>'
         + '<a href="why.html" onclick="toggleMenu()"><h3>Why - The Purpose of the Product</h3>'
