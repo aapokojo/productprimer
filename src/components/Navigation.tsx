@@ -7,7 +7,6 @@ export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
-    console.log('Menu toggle clicked, current state:', isMenuOpen);
     setIsMenuOpen(!isMenuOpen);
   };
 
