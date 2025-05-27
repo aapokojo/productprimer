@@ -12,14 +12,14 @@ export default function SummaryPage() {
         <div className="content-text">
             In everything you do, you get better by doing and iterating as you go.
             Focus as much of your thinking and brain power into your product building efforts and learning how your product performs and succeeds.
-            Set up clear frameworks and processes so you don't need to re-invent the wheel whenever you need to evaluate your
-            product's purpose, assess your strategical focus areas or think what to build next. And do all of these activties on a regular basis.
+            Set up clear frameworks and processes so you don&apos;t need to re-invent the wheel whenever you need to evaluate your
+            product&apos;s purpose, assess your strategical focus areas or think what to build next. And do all of these activties on a regular basis.
         </div>
         <Image src="/buildlearn.jpg" alt="Build and Learn Cycle" width={600} height={400} className="w-full" />
         <div className="content-text">
           Now, go and build a great product. And enjoy the ride. 
           <ul>
-              <li>Why - Find your product's purpose. As market evolves, re-evaluate the relevance of your product.</li>
+              <li>Why - Find your product&apos;s purpose. As market evolves, re-evaluate the relevance of your product.</li>
               <li>How - Define a strategy on how to deliver a meaningful product. Keep your focus constantly in the right things.</li>
               <li>What - Understand your users needs and focus your solutions on outcomes. Keep on a constant dialogue with your users.</li>
           </ul>

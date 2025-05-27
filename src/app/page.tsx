@@ -13,7 +13,7 @@ export default function Home() {
           Welcome to Product Primer – <i>A Starter Guide to Building Great Products* (*great is not always successful)</i>. 
           The primer presents a collection of theoretical frameworks and practical methods for building products. 
           It challenges the conventional notion that a great product is automatically a successful one. 
-          Instead, it focuses on what's in your control - empowering you build great products that serve a purpose and solve real problems.
+          Instead, it focuses on what&apos;s in your control - empowering you build great products that serve a purpose and solve real problems.
         </div>
         <div className="content-text">
           Product work as a skill and Product Management as a craft is essentially problem solving at different abstraction levels, 
@@ -27,11 +27,11 @@ export default function Home() {
         </div>
         <Image src="/buildlearn.jpg" alt="Build and Learn Cycle" width={600} height={400} className="w-full" />
         <div className="content-text">
-          Whether you're a seasoned professional or just starting out, this primer is designed to guide you through the
+          Whether you&apos;re a seasoned professional or just starting out, this primer is designed to guide you through the
           practices, structures and thinking frameworks that allow you to focus on the outcomes, building a great product 
           and learning how to make it better.
           The perspectives and advice offered in this primer are highly opinionated, 
-          drawn directly from the author's own extensive experience. 
+          drawn directly from the author&apos;s own extensive experience. 
         </div>
       </section>
 

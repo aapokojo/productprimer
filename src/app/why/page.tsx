@@ -12,7 +12,7 @@ export default function WhyPage() {
         <div className="content-text">
           Ultimately, every single product can be reduced to a specific user need, and hence to an individual user.
           To increase the chances of making a succesful product, you need to find out if there is a critical amount of users 
-          that have a specific need, which can be better met with your product, and isn't served well enough with anything else out there. 
+          that have a specific need, which can be better met with your product, and isn&apos;t served well enough with anything else out there. 
           Chances here though are against you - there is already very likely a product or a solution the user is equipped 
           with to tackle their problems and to fulfill their needs.
         </div>
@@ -26,14 +26,14 @@ export default function WhyPage() {
         <Image src="/users.jpg" alt="User needs" width={600} height={400} className="w-full" />
         <div className="content-text">
           Is there a large enough audience for my product, which is currently underserved in the market?
-          Can my product offer them something that isn't offered by anything else out there?
+          Can my product offer them something that isn&apos;t offered by anything else out there?
           Is the product compelling enough to get large enough audience rallying behind my product?
           Finding the unique value proposition for your product that fits the current market is essential. 
         </div>
         <div className="content-text">
           The key value proposition as the product purpose could be stated for example as <i>The home for video meme creators</i> 
           or <i>The number one online destination for fashion</i>.
-          Based on the maturity of the product, this typically doesn't change much over time.
+          Based on the maturity of the product, this typically doesn&apos;t change much over time.
           When creating a completely new direction and purpose for the product, it is often considered a pivot.
           This could be a result of not finding enough growth with the existing product, a significant shift in the market 
           or a new competitor entering the market and changing the game. 
@@ -46,8 +46,8 @@ export default function WhyPage() {
           Frameworks, like the Blue Ocean / Red Ocean strategy framework, or the work of Clayton Christensen on Innovators Solution, 
           help you frame your product idea and solution against that existing world, where your users are interacting with existing solutions. 
           What are the elements of my product that are directly competing against the existing market?  
-          What are the users' existing expectations from a product in the market? What are the elements of my product 
-          that provide value other products currently can't?
+          What are the users&apos; existing expectations from a product in the market? What are the elements of my product 
+          that provide value other products currently can&apos;t?
         </div>
         <div className="content-text">            
           Focusing on the current users, their current needs and how the existing product solves those problems, 
@@ -60,11 +60,11 @@ export default function WhyPage() {
           Blue Ocean strategy framework helps you identify where the current industry competition and investments are the highest - 
           where you should do the minimal investments to offer a minimal level of service, and instead put most of 
           your investments into the areas of your product where you create value beyond what is currently available in the market.
-          Alternatively, if you can't find that competitive edge from your product, chances are users will not choose your product
+          Alternatively, if you can&apos;t find that competitive edge from your product, chances are users will not choose your product
           over the one they already use.
         </div>
         <div className="content-text">
-          This is the part in product building which is usually referred to "finding the product-market-fit". To make a dent in the world
+          This is the part in product building which is usually referred to &quot;finding the product-market-fit&quot;. To make a dent in the world
           with your product, you need to understand the world and the market where your prouduct operates.
         </div>
         <div className="content-text">
@@ -88,12 +88,12 @@ export default function WhyPage() {
         <div className="content-text">
             Your product does not operate in a vacuum. Users have needs - which are already solved by one way or the other. 
             Find out what is the minimum you need to invest to match the existing solutions and 
-            put most of your bets in the competing factors other solutions don't offer.
+            put most of your bets in the competing factors other solutions don&apos;t offer.
         </div>
         <div className="content-text">
             Inspiration and Further Reading:
         <ul>
-            <li>The Innovator's Solution: Creating and Sustaining Successful Growth by Clayton Christensen</li>
+            <li>The Innovator&apos;s Solution: Creating and Sustaining Successful Growth by Clayton Christensen</li>
             <li>Blue Ocean Strategy: How to Create Uncontested Market Space and Make Competition Irrelevant by W. Chan Kim, Renee Mauborgne</li>
         </ul>
         </div>

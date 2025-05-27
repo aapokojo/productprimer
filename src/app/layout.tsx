@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
 import Script from "next/script";
+import { Inter } from "next/font/google";
 import "@/app/globals.css";
+
+const inter = Inter({ 
+  subsets: ["latin"],
+  variable: "--font-inter"
+});
 
 export const metadata: Metadata = {
   title: "Product Primer",
@@ -27,12 +33,8 @@ export default function RootLayout({
             gtag('config', 'G-MSWPQ1R76K');
           `}
         </Script>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho&display=swap" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet" />
       </head>
-      <body>
+      <body className={inter.className}>
         <div className="content-wrapper">
           {children}
         </div>

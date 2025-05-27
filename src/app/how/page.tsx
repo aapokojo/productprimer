@@ -10,7 +10,7 @@ export default function HowPage() {
         <h4>Turning Purpose into Practice</h4>
         <h2 id="ways">Key Questions for Building Your Product Strategy</h2>
         <div className="content-text">
-          Strategy takes your product's purpose to practice. Your product strategy should answer at least the following
+          Strategy takes your product&apos;s purpose to practice. Your product strategy should answer at least the following
           questions: Why should your customers care about your product? Who are those customers? How does your product
           fill the gaps in the market? How will you measure success? What do you need to build and do you have the 
           expertise and resources you need in order to build that? How do you validate what you are building is
@@ -29,15 +29,15 @@ export default function HowPage() {
         <h2>Key Takeaways</h2>
         <div className="content-text">
             Start from the outcomes and keep the focus purely on the value you want to provide. 
-            Align your your users' success to your product's success. When your product enters
+            Align your your users&apos; success to your product&apos;s success. When your product enters
             the market, competitors are likely to react and hence the market is constantly evolving.
             Make sure you have the expertise and resources to constantly deliver value unattainable
-            with the competitors' products.
+            with the competitors&apos; products.
         </div>
         <div className="content-text">
             Inspiration and Further Reading:
         <ul>
-            <li>The North Star Playbook: The guide to discovering your product's North Star by Amplitude</li>
+            <li>The North Star Playbook: The guide to discovering your product&apos;s North Star by Amplitude</li>
             <li>The Star Model™ by Jay R. Galbraith</li>
             <li>Radical Focus: Achieving Your Most Important Goals with Objectives and Key Results by Christina R. Wodtke</li>
         </ul>
