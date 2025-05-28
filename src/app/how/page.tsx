@@ -4,6 +4,9 @@ import PageLayout from "@/components/PageLayout";
 import { getPageContent } from "@/lib/contentful";
 import RichTextRenderer from "@/components/RichTextRenderer";
 
+// Revalidate every 30 minutes (1800 seconds)
+export const revalidate = 1800;
+
 export default async function HowPage() {
   // Try to get content from Contentful, with fallback to static content
   const contentfulData = await getPageContent('how');
