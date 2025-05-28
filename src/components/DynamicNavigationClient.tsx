@@ -71,7 +71,7 @@ export default function DynamicNavigationClient({ items }: Props) {
         {items.map((item, index) => (
           <div key={item.name}>
             <Link href={item.url} onClick={toggleMenu}>
-              <h3 style={{ fontFamily: 'var(--font-shippori-mincho), "Shippori Mincho", serif', fontWeight: 600 }}>
+              <h3 style={{ fontFamily: 'var(--font-shippori-mincho), "Shippori Mincho", serif', fontWeight: 700 }}>
                 {item.name}
               </h3>
               {item.subtitle && (

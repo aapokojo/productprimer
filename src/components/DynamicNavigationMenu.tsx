@@ -71,7 +71,7 @@ export default function DynamicNavigation({ pages }: DynamicNavigationProps) {
               href={page.pageName === 'introduction' ? '/' : `/${page.pageName}`} 
               onClick={toggleMenu}
             >
-              <h3 style={{ fontFamily: '"Shippori Mincho", serif', fontWeight: 600 }}>
+              <h3 style={{ fontFamily: '"Shippori Mincho", serif', fontWeight: 700 }}>
                 {page.header}
               </h3>
               <h4 style={{ color: '#c99' }}>

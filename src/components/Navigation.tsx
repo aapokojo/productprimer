@@ -58,31 +58,31 @@ export default function Navigation() {
         }}
       >
         <Link href="/" onClick={toggleMenu}>
-          <h3 style={{ fontFamily: '"Shippori Mincho", serif', fontWeight: 600 }}>Product Primer</h3>
+          <h3 style={{ fontFamily: '"Shippori Mincho", serif', fontWeight: 700 }}>Product Primer</h3>
           <h4 style={{ color: '#c99' }}>Introduction</h4>
         </Link>
         <hr style={{ margin: '8px 0' }} />
         
         <Link href="/why" onClick={toggleMenu}>
-          <h3 style={{ fontFamily: '"Shippori Mincho", serif', fontWeight: 600 }}>Why - The Purpose of the Product</h3>
+          <h3 style={{ fontFamily: '"Shippori Mincho", serif', fontWeight: 700 }}>Why - The Purpose of the Product</h3>
           <h4 style={{ color: '#c99' }}>Finding the Key Value Proposition</h4>
         </Link>
         <hr style={{ margin: '8px 0' }} />
         
         <Link href="/how" onClick={toggleMenu}>
-          <h3 style={{ fontFamily: '"Shippori Mincho", serif', fontWeight: 600 }}>How - Keep Focus in the Right Things</h3>
+          <h3 style={{ fontFamily: '"Shippori Mincho", serif', fontWeight: 700 }}>How - Keep Focus in the Right Things</h3>
           <h4 style={{ color: '#c99' }}>Turning Purpose into Practice with a Sound Strategy</h4>
         </Link>
         <hr style={{ margin: '8px 0' }} />
         
         <Link href="/what" onClick={toggleMenu}>
-          <h3 style={{ fontFamily: '"Shippori Mincho", serif', fontWeight: 600 }}>What - Building Meaningful Solutions</h3>
+          <h3 style={{ fontFamily: '"Shippori Mincho", serif', fontWeight: 700 }}>What - Building Meaningful Solutions</h3>
           <h4 style={{ color: '#c99' }}>Solving for Users Problems</h4>
         </Link>
         <hr style={{ margin: '8px 0' }} />
         
         <Link href="/summary" onClick={toggleMenu}>
-          <h3 style={{ fontFamily: '"Shippori Mincho", serif', fontWeight: 600 }}>Summary</h3>
+          <h3 style={{ fontFamily: '"Shippori Mincho", serif', fontWeight: 700 }}>Summary</h3>
           <h4 style={{ color: '#c99' }}>Rinse and Repeat</h4>
         </Link>
         <hr style={{ margin: '8px 0' }} />

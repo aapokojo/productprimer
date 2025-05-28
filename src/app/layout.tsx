@@ -10,7 +10,7 @@ const inter = Inter({
 
 const shipporiMincho = Shippori_Mincho({
   subsets: ["latin"],
-  weight: ["400", "600"],
+  weight: ["400", "500", "600", "700", "800"],
   variable: "--font-shippori-mincho"
 });
 
