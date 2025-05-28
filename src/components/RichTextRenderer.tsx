@@ -10,9 +10,13 @@ const renderOptions = {
     [MARKS.ITALIC]: (text: any) => <em>{text}</em>,
   },
   renderNode: {
-    [BLOCKS.PARAGRAPH]: (node: any, children: any) => (
-      <div className="content-text">{children}</div>
-    ),
+    [BLOCKS.PARAGRAPH]: (node: any, children: any) => {
+      // Check if this paragraph only contains an image
+      if (node.content.length === 1 && node.content[0].nodeType === 'embedded-asset-block') {
+        return <>{children}</>;
+      }
+      return <div className="content-text">{children}</div>;
+    },
     [BLOCKS.HEADING_1]: (node: any, children: any) => <h1>{children}</h1>,
     [BLOCKS.HEADING_2]: (node: any, children: any) => <h2>{children}</h2>,
     [BLOCKS.HEADING_3]: (node: any, children: any) => <h3>{children}</h3>,
@@ -22,13 +26,15 @@ const renderOptions = {
     [BLOCKS.EMBEDDED_ASSET]: (node: any) => {
       const { file, description } = node.data.target.fields;
       return (
-        <Image
-          src={`https:${file.url}`}
-          alt={description || ''}
-          width={file.details.image.width}
-          height={file.details.image.height}
-          className="w-full"
-        />
+        <div className="image-wrapper">
+          <Image
+            src={`https:${file.url}`}
+            alt={description || ''}
+            width={file.details.image.width}
+            height={file.details.image.height}
+            className="content-image"
+          />
+        </div>
       );
     },
     [INLINES.HYPERLINK]: (node: any, children: any) => (

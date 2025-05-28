@@ -29,13 +29,6 @@ h4 {
   color: #c99;
 }
 
-.content-text {
-  font-family: var(--font-inter), "Inter", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  padding-bottom: 16px;
-}
-
 .footer {
   color: #422;
   font-weight: 300;
@@ -51,6 +44,36 @@ a {
 img {
   max-width: 100%;
   object-fit: contain;
+}
+
+/* Image styling for content images */
+.image-wrapper {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  line-height: 0;
+}
+
+.content-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  vertical-align: top;
+}
+
+/* Reduce padding for content text */
+.content-text {
+  font-family: var(--font-inter), "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  padding-bottom: 8px;
+  margin: 0;
+}
+
+/* Tighter spacing between consecutive text blocks */
+.content-text + .content-text {
+  padding-top: 4px;
 }
 
 #toc {
