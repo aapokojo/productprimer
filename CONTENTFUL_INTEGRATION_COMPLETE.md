@@ -132,7 +132,7 @@ Create a "Page" content type in Contentful with these fields:
 
 ### Environment Configuration
 ```env
-CONTENTFUL_SPACE_ID=470heism3l85
+CONTENTFUL_SPACE_ID=your-space-id
 CONTENTFUL_ACCESS_TOKEN=[your-token]
 CONTENTFUL_ENVIRONMENT=master
 ```
