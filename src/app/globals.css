@@ -1,5 +1,5 @@
 body {
-  font-family: "Inter", serif;
+  font-family: var(--font-inter), "Inter", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
 }
@@ -12,7 +12,7 @@ body {
 }
 
 h1, h2, h3 {
-  font-family: "Shippori Mincho", serif;
+  font-family: var(--font-shippori-mincho), "Shippori Mincho", serif;
   font-weight: 600;
 }
 
@@ -23,14 +23,14 @@ h2 {
 
 h4 {
   margin-top: -16px;
-  font-family: "Inter", serif;
+  font-family: var(--font-inter), "Inter", sans-serif;
   font-optical-sizing: auto;
   font-weight: 600;
   color: #c99;
 }
 
 .content-text {
-  font-family: "Inter", serif;
+  font-family: var(--font-inter), "Inter", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
   padding-bottom: 16px;

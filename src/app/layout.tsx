@@ -1,11 +1,17 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import { Inter } from "next/font/google";
+import { Inter, Shippori_Mincho } from "next/font/google";
 import "@/app/globals.css";
 
 const inter = Inter({ 
   subsets: ["latin"],
   variable: "--font-inter"
+});
+
+const shipporiMincho = Shippori_Mincho({
+  subsets: ["latin"],
+  weight: ["400", "600"],
+  variable: "--font-shippori-mincho"
 });
 
 export const metadata: Metadata = {
@@ -34,7 +40,7 @@ export default function RootLayout({
           `}
         </Script>
       </head>
-      <body className={inter.className}>
+      <body className={`${inter.variable} ${shipporiMincho.variable}`}>
         <div className="content-wrapper">
           {children}
         </div>
