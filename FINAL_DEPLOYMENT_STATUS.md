@@ -4,9 +4,9 @@
 
 **Date**: May 28, 2025  
 **Status**: 🟢 **DEPLOYMENT READY**  
-**Last Commit**: `3570fd88` - Security fix: Replace exposed Contentful API credentials with placeholders
+**Last Commit**: `02558084` - Restructure to flexible page architecture: Remove dedicated page files
 
-⚠️ **SECURITY NOTE**: New API key generated and updated in local development. When deploying to production, ensure Vercel environment variables are updated with the new secure credentials.
+✅ **FLEXIBLE ARCHITECTURE**: Pages now dynamically generated from Contentful content without dedicated route files. New pages can be added in Contentful and will automatically appear in the site.
 
 ---
 
@@ -49,10 +49,20 @@
 ```
 
 ### Page Structure (Dynamic)
-- **Introduction** (pageNumber: 1) → Next Chapter only
-- **Why/How/What** (pageNumber: 2-4) → Previous + Next Chapter  
-- **Summary** (pageNumber: 5) → Previous Chapter only
+- **Introduction** (pageNumber: 1) → `/` (homepage)
+- **Principles** (pageNumber: 2) → `/Principles` (new page example)
+- **Why** (pageNumber: 3) → `/Why`
+- **How** (pageNumber: 4) → `/How`  
+- **What** (pageNumber: 5) → `/What`
+- **Summary** (pageNumber: 6) → `/Summary`
 - **Menu**: Auto-generated from Contentful with proper ordering
+
+### Flexible Architecture Benefits
+- ✅ **No dedicated page files** - All pages use `[slug]` dynamic routing
+- ✅ **Contentful-driven routes** - Page names become URL paths automatically
+- ✅ **Infinite scalability** - Add unlimited pages in Contentful without code changes
+- ✅ **Auto-ordering** - Pages sorted by `pageNumber` field
+- ✅ **Zero maintenance** - New pages appear instantly via ISR + webhooks
 
 ### Performance Metrics
 | Metric | Before | After ISR |
