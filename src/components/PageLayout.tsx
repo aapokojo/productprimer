@@ -1,4 +1,4 @@
-import Navigation from "./Navigation";
+import DynamicNavigation from "./DynamicNavigation";
 
 interface PageLayoutProps {
   children: React.ReactNode;
@@ -7,7 +7,7 @@ interface PageLayoutProps {
 export default function PageLayout({ children }: PageLayoutProps) {
   return (
     <>
-      <Navigation />
+      <DynamicNavigation />
       <main id="content" className="pt-6 ml-0 flex-1">
         {children}
       </main>

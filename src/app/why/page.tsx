@@ -1,8 +1,26 @@
 import Image from "next/image";
 import Link from "next/link";
 import PageLayout from "@/components/PageLayout";
+import RichTextRenderer from "@/components/RichTextRenderer";
+import { getPageContent } from "@/lib/contentful";
 
-export default function WhyPage() {
+export default async function WhyPage() {
+  const pageContent = await getPageContent('why');
+  
+  // If we have content from Contentful, use it
+  if (pageContent && pageContent.content) {
+    return (
+      <PageLayout>
+        <section id="purpose">
+          <h1>{pageContent.header}</h1>
+          <h4>{pageContent.subHeader}</h4>
+          <RichTextRenderer content={pageContent.content} />
+        </section>
+      </PageLayout>
+    );
+  }
+
+  // Fallback to existing static content
   return (
     <PageLayout>
       <section id="purpose">

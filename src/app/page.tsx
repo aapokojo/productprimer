@@ -1,8 +1,33 @@
 import Image from "next/image";
 import Link from "next/link";
 import PageLayout from "@/components/PageLayout";
+import RichTextRenderer from "@/components/RichTextRenderer";
+import TableOfContents from "@/components/TableOfContents";
+import { getPageContent } from "@/lib/contentful";
 
-export default function Home() {
+export default async function Home() {
+  const pageContent = await getPageContent('introduction');
+  
+  // If we have content from Contentful, use it
+  if (pageContent && pageContent.content) {
+    return (
+      <PageLayout>
+        <section id="starterguide">
+          <h1>Product Primer</h1>
+          <h4>A Starter Guide to Building Great* Products (*great is not always successful)</h4>
+          <RichTextRenderer content={pageContent.content} />
+          
+          <TableOfContents />
+          
+          <div id="pagenavigation" className="pt-6 text-center text-sm">
+            <Link href="/why">First Chapter →</Link>
+          </div>
+        </section>
+      </PageLayout>
+    );
+  }
+
+  // Fallback content if Contentful is not available or no content found
   return (
     <PageLayout>
       <section id="starterguide">
@@ -33,6 +58,8 @@ export default function Home() {
           The perspectives and advice offered in this primer are highly opinionated, 
           drawn directly from the author&apos;s own extensive experience. 
         </div>
+
+        <TableOfContents />
       </section>
 
       <section id="abouttheauthor">
