@@ -40,9 +40,9 @@ export default async function DynamicNavigation() {
   }
 
   const navigationItems = pages.map(page => ({
-    name: page.pageName,
+    name: page.header || page.pageName, // Use header from Contentful, fallback to pageName
     url: getFromMap(PAGE_URL_MAP, page.pageName) || `/${page.pageName.toLowerCase()}`,
-    subtitle: getFromMap(PAGE_SUBTITLE_MAP, page.pageName) || '',
+    subtitle: page.subHeader || getFromMap(PAGE_SUBTITLE_MAP, page.pageName) || '', // Use subHeader from Contentful, fallback to hardcoded map
     pageNumber: page.pageNumber
   }));
 

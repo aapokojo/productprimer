@@ -28,23 +28,6 @@ export default function DynamicNavigationClient({ items }: Props) {
     };
   }, [isMenuOpen]);
 
-  // Format page name for display
-  const formatPageName = (name: string): string => {
-    if (name === 'introduction') return 'Product Primer';
-    return name.charAt(0).toUpperCase() + name.slice(1);
-  };
-
-  // Get section title for display
-  const getSectionTitle = (name: string): string => {
-    const titles: Record<string, string> = {
-      'why': 'Why - The Purpose of the Product',
-      'how': 'How - Keep Focus in the Right Things',
-      'what': 'What - Building Meaningful Solutions',
-      'summary': 'Summary'
-    };
-    return titles[name] || formatPageName(name);
-  };
-
   return (
     <>
       <button
@@ -89,7 +72,7 @@ export default function DynamicNavigationClient({ items }: Props) {
           <div key={item.name}>
             <Link href={item.url} onClick={toggleMenu}>
               <h3 style={{ fontFamily: 'var(--font-shippori-mincho), "Shippori Mincho", serif', fontWeight: 600 }}>
-                {getSectionTitle(item.name)}
+                {item.name}
               </h3>
               {item.subtitle && (
                 <h4 style={{ color: '#c99' }}>{item.subtitle}</h4>
