@@ -30,6 +30,15 @@ export interface ContentSection {
   };
 }
 
+export interface NavigationItem {
+  pageName: string;
+  header: string;
+  subHeader: string;
+  pageNumber: number;
+  isIntroduction: boolean;
+  isSummary: boolean;
+}
+
 export async function getPageContent(pageName: string): Promise<PageContent | null> {
   try {
     // First try exact match
@@ -114,6 +123,54 @@ export async function getAllPagesOrdered(): Promise<PageContent[]> {
   } catch (error) {
     console.error('Error fetching ordered pages:', error);
     return [];
+  }
+}
+
+export async function getPageNavigation(currentPageName: string): Promise<{
+  previousPage: NavigationItem | null;
+  nextPage: NavigationItem | null;
+  currentPage: PageContent | null;
+  navigationPages: NavigationItem[];
+}> {
+  try {
+    const allPages = await getAllPagesOrdered();
+    const currentPageIndex = allPages.findIndex(page => 
+      page.pageName.toLowerCase() === currentPageName.toLowerCase()
+    );
+    
+    if (currentPageIndex === -1) {
+      return { previousPage: null, nextPage: null, currentPage: null, navigationPages: [] };
+    }
+    
+    const currentPage = allPages[currentPageIndex];
+    const previousPage = currentPageIndex > 0 ? {
+      ...allPages[currentPageIndex - 1],
+      isIntroduction: allPages[currentPageIndex - 1].pageNumber === 1,
+      isSummary: false
+    } : null;
+    
+    const nextPage = currentPageIndex < allPages.length - 1 ? {
+      ...allPages[currentPageIndex + 1],
+      isIntroduction: false,
+      isSummary: allPages[currentPageIndex + 1].pageNumber === allPages.length
+    } : null;
+
+    // Create navigation pages for the menu
+    const navigationPages: NavigationItem[] = allPages.map(page => ({
+      ...page,
+      isIntroduction: page.pageNumber === 1,
+      isSummary: page.pageNumber === allPages.length
+    }));
+    
+    return {
+      previousPage,
+      nextPage,
+      currentPage,
+      navigationPages
+    };
+  } catch (error) {
+    console.error('Error getting page navigation:', error);
+    return { previousPage: null, nextPage: null, currentPage: null, navigationPages: [] };
   }
 }
 

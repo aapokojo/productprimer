@@ -1,6 +1,7 @@
 import PageLayout from "@/components/PageLayout";
 import RichTextRenderer from "@/components/RichTextRenderer";
-import { getPageContent, getAllPageSlugs } from "@/lib/contentful";
+import DynamicPageNavigation from "@/components/DynamicPageNavigation";
+import { getPageNavigation, getAllPageSlugs } from "@/lib/contentful";
 import { notFound } from "next/navigation";
 
 interface PageProps {
@@ -23,20 +24,23 @@ export async function generateStaticParams() {
 
 export default async function DynamicPage({ params }: PageProps) {
   const { slug } = await params;
-  const pageContent = await getPageContent(slug);
+  const { currentPage, previousPage, nextPage, navigationPages } = await getPageNavigation(slug);
   
-  if (!pageContent) {
+  if (!currentPage) {
     notFound();
   }
 
   return (
-    <PageLayout>
+    <PageLayout navigationPages={navigationPages}>
       <section>
-        <h1>{pageContent.header}</h1>
-        {pageContent.subHeader && <h4>{pageContent.subHeader}</h4>}
-        
-        {pageContent.content && <RichTextRenderer content={pageContent.content} />}
+        <h1>{currentPage.header}</h1>
+        {currentPage.subHeader && <h4>{currentPage.subHeader}</h4>}
+        <RichTextRenderer content={currentPage.content} />
+        <DynamicPageNavigation previousPage={previousPage} nextPage={nextPage} />
       </section>
     </PageLayout>
   );
 }
+
+// Revalidate every 30 minutes (1800 seconds)
+export const revalidate = 1800;
