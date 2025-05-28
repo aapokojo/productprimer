@@ -17,6 +17,16 @@ const shipporiMincho = Shippori_Mincho({
 export const metadata: Metadata = {
   title: "Product Primer",
   description: "A Starter Guide to Building Great Products",
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: '16x16 32x32 48x48', type: 'image/x-icon' },
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+    ],
+    shortcut: '/favicon.ico',
+    apple: '/favicon-32x32.png',
+  },
 };
 
 export default function RootLayout({
