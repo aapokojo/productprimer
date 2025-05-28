@@ -3,9 +3,9 @@ import { createClient } from 'contentful';
 import { Document } from '@contentful/rich-text-types';
 
 const client = createClient({
-  space: '470heism3l85',
-  environment: 'master',
-  accessToken: 'Jnf7fRSHpiuUAvmdiH_urkozsH5ndiW7e5fv1krNkG0',
+  space: process.env.CONTENTFUL_SPACE_ID!,
+  environment: process.env.CONTENTFUL_ENVIRONMENT || 'master',
+  accessToken: process.env.CONTENTFUL_ACCESS_TOKEN!,
 });
 
 export interface PageContent {

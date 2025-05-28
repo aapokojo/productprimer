@@ -4,7 +4,9 @@
 
 **Date**: May 28, 2025  
 **Status**: 🟢 **DEPLOYMENT READY**  
-**Last Commit**: `7ee84c2c` - Complete dynamic transformation: Contentful-driven navigation and content
+**Last Commit**: `3570fd88` - Security fix: Replace exposed Contentful API credentials with placeholders
+
+⚠️ **SECURITY NOTE**: New API key generated and updated in local development. When deploying to production, ensure Vercel environment variables are updated with the new secure credentials.
 
 ---
 
@@ -73,6 +75,17 @@
 - [x] Contentful credentials configured
 - [x] Webhook secret added to environment
 - [x] Next.js 15 configuration optimized
+
+### 🔒 Security Considerations
+- [x] **API Key Regenerated**: Old exposed key replaced with new secure key
+- [x] **Environment Variables**: All credentials properly stored in `.env.local` (gitignored)
+- [x] **Production Deployment**: Must update Vercel environment variables with new key
+- [x] **Git History**: Old exposed credentials removed from documentation
+
+**⚠️ CRITICAL**: Before production deployment, update these Vercel environment variables:
+- `CONTENTFUL_SPACE_ID=470heism3l85`
+- `CONTENTFUL_ACCESS_TOKEN=fnUjeBM179G3Kpt4aDa06usVkv2hBZ_gZuc6SMygmbI`
+- `CONTENTFUL_WEBHOOK_SECRET=productprimer_webhook_secret_2024`
 
 ### ⏳ Final Production Steps
 1. **Deploy to Vercel** (or chosen platform)
