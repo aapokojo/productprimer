@@ -79,19 +79,17 @@
 ### 🔒 Security Considerations
 - [x] **API Key Regenerated**: Old exposed key replaced with new secure key
 - [x] **Environment Variables**: All credentials properly stored in `.env.local` (gitignored)
-- [x] **Production Deployment**: Must update Vercel environment variables with new key
+- [x] **Production Deployment**: Vercel gets credentials automatically via Contentful integration
 - [x] **Git History**: Old exposed credentials removed from documentation
 
-**⚠️ CRITICAL**: Before production deployment, update these Vercel environment variables:
-- `CONTENTFUL_SPACE_ID=470heism3l85`
-- `CONTENTFUL_ACCESS_TOKEN=fnUjeBM179G3Kpt4aDa06usVkv2hBZ_gZuc6SMygmbI`
-- `CONTENTFUL_WEBHOOK_SECRET=productprimer_webhook_secret_2024`
+**✅ VERCEL INTEGRATION**: Vercel automatically manages Contentful credentials through the Contentful integration. No manual environment variable setup required for production deployment.
 
 ### ⏳ Final Production Steps
 1. **Deploy to Vercel** (or chosen platform)
-2. **Configure Contentful Webhook**:
+2. **Enable Contentful Integration** in Vercel dashboard for automatic credential management
+3. **Configure Contentful Webhook**:
    - URL: `https://your-domain.com/api/revalidate`
-   - Header: `x-contentful-webhook-secret: productprimer_webhook_secret_2024`
+   - Header: `x-contentful-webhook-secret: [webhook_secret_from_vercel_env]`
    - Trigger: Page content publish/unpublish
 
 ---
