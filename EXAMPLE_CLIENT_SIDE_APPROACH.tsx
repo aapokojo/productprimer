@@ -2,10 +2,10 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { getPageContent } from "@/lib/contentful";
+import { getPageContent, PageContent } from "@/lib/contentful";
 
 export default function ClientSidePage() {
-  const [pageContent, setPageContent] = useState(null);
+  const [pageContent, setPageContent] = useState<PageContent | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

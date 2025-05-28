@@ -1,5 +1,5 @@
 // Example: Build-time only approach (SSG)
-import { getPageContent } from "@/lib/contentful";
+import { getPageContent, PageContent } from "@/lib/contentful";
 
 // This runs only at build time
 export async function generateStaticParams() {
@@ -15,7 +15,7 @@ export async function generateStaticParams() {
 
 export default async function StaticPage({ params }: { params: { slug: string } }) {
   // This content is fetched at BUILD TIME only
-  const pageContent = await getPageContent(params.slug);
+  const pageContent: PageContent | null = await getPageContent(params.slug);
   
   return (
     <div>

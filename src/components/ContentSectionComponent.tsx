@@ -16,7 +16,7 @@ export default function ContentSectionComponent({ section }: ContentSectionCompo
       {section.listItems && section.listItems.length > 0 && (
         <div className="content-text">
           <ul>
-            {section.listItems.map((item, index) => (
+            {section.listItems.map((item: string, index: number) => (
               <li key={index}>{item}</li>
             ))}
           </ul>

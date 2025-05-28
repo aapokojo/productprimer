@@ -1,8 +1,8 @@
 // Example: ISR approach - Cache with periodic updates
-import { getPageContent } from "@/lib/contentful";
+import { getPageContent, PageContent } from "@/lib/contentful";
 
 export default async function ISRPage() {
-  const pageContent = await getPageContent('introduction');
+  const pageContent: PageContent | null = await getPageContent('introduction');
   
   return (
     <div>

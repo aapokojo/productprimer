@@ -16,6 +16,20 @@ export interface PageContent {
   content: Document | null; // Rich text content from Contentful
 }
 
+// Interface for content sections (example/demo component)
+export interface ContentSection {
+  id: string;
+  heading?: string;
+  content?: Document;
+  listItems?: string[];
+  image?: {
+    url: string;
+    alt: string;
+    width: number;
+    height: number;
+  };
+}
+
 export async function getPageContent(pageName: string): Promise<PageContent | null> {
   try {
     // First try exact match
