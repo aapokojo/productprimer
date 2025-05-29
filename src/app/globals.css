@@ -197,3 +197,59 @@ section {
   color: #666;
   font-style: italic;
 }
+
+/* Content Table Styles */
+table.content-table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+  margin: 16px 0 !important;
+  font-size: 0.6em !important;
+  line-height: 1.4 !important;
+}
+
+table.content-table th,
+table.content-table td {
+  border: 1px solid #e0e0e0 !important;
+  padding: 8px 10px !important;
+  text-align: left !important;
+  vertical-align: top !important;
+  font-size: inherit !important;
+  font-family: var(--font-inter), "Inter", sans-serif !important;
+}
+
+table.content-table th {
+  background-color: #f8f8f8 !important;
+  font-weight: 600 !important;
+  color: #422 !important;
+  text-align: left !important;
+  vertical-align: top !important;
+}
+
+table.content-table tr:nth-child(even) {
+  background-color: #fafafa !important;
+}
+
+table.content-table tr:hover {
+  background-color: #f5f5f5 !important;
+}
+
+/* Override content-text styling within tables */
+table.content-table .content-text {
+  font-size: inherit !important;
+  padding-bottom: 4px !important;
+  font-family: var(--font-inter), "Inter", sans-serif !important;
+  text-align: left !important;
+  margin: 0 !important;
+}
+
+/* General table styling fallback */
+table {
+  font-size: 0.6em !important;
+}
+
+table th,
+table td {
+  text-align: left !important;
+  vertical-align: top !important;
+  padding: 8px 10px !important;
+}

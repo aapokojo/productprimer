@@ -23,6 +23,10 @@ const renderOptions = {
     [BLOCKS.UL_LIST]: (node: any, children: any) => <ul>{children}</ul>,
     [BLOCKS.OL_LIST]: (node: any, children: any) => <ol>{children}</ol>,
     [BLOCKS.LIST_ITEM]: (node: any, children: any) => <li>{children}</li>,
+    [BLOCKS.TABLE]: (node: any, children: any) => <table className="content-table">{children}</table>,
+    [BLOCKS.TABLE_ROW]: (node: any, children: any) => <tr>{children}</tr>,
+    [BLOCKS.TABLE_CELL]: (node: any, children: any) => <td>{children}</td>,
+    [BLOCKS.TABLE_HEADER_CELL]: (node: any, children: any) => <th>{children}</th>,
     [BLOCKS.EMBEDDED_ASSET]: (node: any) => {
       const { file, description } = node.data.target.fields;
       return (
