@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import puppeteer from 'puppeteer';
+import puppeteer from 'puppeteer-core';
+import chromium from '@sparticuz/chromium';
 import { getAllPagesOrdered, PageContent } from '@/lib/contentful';
 import { Document, BLOCKS, INLINES, MARKS } from '@contentful/rich-text-types';
 
@@ -28,17 +29,26 @@ interface AssetFields {
 
 export async function GET(request: NextRequest) {
   try {
+    // Configure for serverless environment
+    const isProduction = process.env.NODE_ENV === 'production';
+    
     const browser = await puppeteer.launch({
-      headless: true,
-      args: [
-        '--no-sandbox', 
-        '--disable-setuid-sandbox',
-        '--disable-dev-shm-usage', // Reduce memory usage
-        '--disable-gpu', // Disable GPU for faster processing
-        '--disable-web-security', // Allow cross-origin requests
-        '--no-zygote', // Reduce memory footprint
-        '--single-process', // Use single process
-      ],
+      args: isProduction 
+        ? chromium.args
+        : [
+            '--no-sandbox',
+            '--disable-setuid-sandbox',
+            '--disable-dev-shm-usage',
+            '--disable-gpu',
+            '--disable-web-security',
+            '--no-zygote',
+            '--single-process',
+          ],
+      defaultViewport: chromium.defaultViewport,
+      executablePath: isProduction 
+        ? await chromium.executablePath()
+        : undefined,
+      headless: chromium.headless,
     });
 
     const page = await browser.newPage();
@@ -54,10 +64,10 @@ export async function GET(request: NextRequest) {
     // Generate the complete booklet HTML
     const bookletHtml = await generateBookletHtml(baseUrl);
     
-    // Set the HTML content
+    // Set the HTML content with increased timeout for production
     await page.setContent(bookletHtml, { 
       waitUntil: 'networkidle0',
-      timeout: 30000 
+      timeout: 60000 // Increased timeout for serverless
     });
 
     // Generate PDF with optimized settings for smaller file size
@@ -84,6 +94,7 @@ export async function GET(request: NextRequest) {
       `,
       // Optimize for smaller file size
       tagged: false, // Disable accessibility tagging to reduce size
+      timeout: 60000, // Increased timeout for PDF generation
     });
 
     await browser.close();
@@ -96,8 +107,18 @@ export async function GET(request: NextRequest) {
     });
   } catch (error) {
     console.error('PDF generation error:', error);
+    console.error('Error details:', {
+      message: error instanceof Error ? error.message : 'Unknown error',
+      stack: error instanceof Error ? error.stack : 'No stack trace',
+      name: error instanceof Error ? error.name : 'Unknown',
+    });
+    
     return NextResponse.json(
-      { error: 'Failed to generate PDF' },
+      { 
+        error: 'Failed to generate PDF',
+        details: error instanceof Error ? error.message : 'Unknown error',
+        timestamp: new Date().toISOString()
+      },
       { status: 500 }
     );
   }
