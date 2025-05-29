@@ -1,6 +1,30 @@
 import { NextRequest, NextResponse } from 'next/server';
 import puppeteer from 'puppeteer';
-import { getAllPagesOrdered } from '@/lib/contentful';
+import { getAllPagesOrdered, PageContent } from '@/lib/contentful';
+import { Document, BLOCKS, INLINES, MARKS } from '@contentful/rich-text-types';
+
+// Type definitions for rich text nodes
+interface RichTextNode {
+  nodeType: string;
+  value?: string;
+  content?: RichTextNode[];
+  marks?: Array<{ type: string }>;
+  data?: {
+    target?: {
+      fields?: {
+        file?: { url: string };
+        description?: string;
+        slug?: string;
+      };
+    };
+    uri?: string;
+  };
+}
+
+interface AssetFields {
+  file: { url: string };
+  description?: string;
+}
 
 export async function GET(request: NextRequest) {
   try {
@@ -136,22 +160,19 @@ async function generateBookletHtml(baseUrl: string): Promise<string> {
   }
 }
 
-async function renderPageContent(page: any, baseUrl: string): Promise<string> {
-  // Import the Contentful rich text types
-  const { BLOCKS, INLINES, MARKS } = await import('@contentful/rich-text-types');
-  
+async function renderPageContent(page: PageContent, baseUrl: string): Promise<string> {
   // Custom HTML renderer function
-  function renderRichTextToHtml(document: any): string {
+  function renderRichTextToHtml(document: Document): string {
     if (!document || !document.content) return '';
     
-    return document.content.map((node: any) => renderNode(node)).join('');
+    return document.content.map((node: RichTextNode) => renderNode(node)).join('');
   }
   
-  function renderNode(node: any): string {
+  function renderNode(node: RichTextNode): string {
     if (node.nodeType === 'text') {
-      let text = node.value;
+      let text = node.value || '';
       if (node.marks) {
-        node.marks.forEach((mark: any) => {
+        node.marks.forEach((mark: { type: string }) => {
           if (mark.type === MARKS.BOLD) {
             text = `<strong>${text}</strong>`;
           } else if (mark.type === MARKS.ITALIC) {
@@ -162,11 +183,11 @@ async function renderPageContent(page: any, baseUrl: string): Promise<string> {
       return text;
     }
     
-    const children = node.content ? node.content.map((child: any) => renderNode(child)).join('') : '';
+    const children = node.content ? node.content.map((child: RichTextNode) => renderNode(child)).join('') : '';
     
     switch (node.nodeType) {
       case BLOCKS.PARAGRAPH:
-        if (node.content.length === 1 && node.content[0].nodeType === 'embedded-asset-block') {
+        if (node.content && node.content.length === 1 && node.content[0].nodeType === 'embedded-asset-block') {
           return children;
         }
         return `<p class="content-text">${children}</p>`;
@@ -191,32 +212,42 @@ async function renderPageContent(page: any, baseUrl: string): Promise<string> {
       case BLOCKS.TABLE_HEADER_CELL:
         return `<th>${children}</th>`;
       case BLOCKS.EMBEDDED_ASSET:
-        const { file, description } = node.data.target.fields;
-        // Optimize image for PDF by using smaller dimensions and quality
-        const originalUrl = file.url;
-        const optimizedUrl = `${originalUrl}?w=600&q=60&fm=webp`; // Compress to 600px width, 60% quality, WebP format
-        return `
-          <div class="image-wrapper">
-            <img 
-              src="https:${optimizedUrl}" 
-              alt="${description || ''}" 
-              class="content-image"
-              loading="lazy"
-            />
-          </div>
-        `;
+        if (node.data?.target?.fields) {
+          const fields = node.data.target.fields as AssetFields;
+          const { file, description } = fields;
+          // Optimize image for PDF by using smaller dimensions and quality
+          const originalUrl = file.url;
+          const optimizedUrl = `${originalUrl}?w=600&q=60&fm=webp`; // Compress to 600px width, 60% quality, WebP format
+          return `
+            <div class="image-wrapper">
+              <img 
+                src="https:${optimizedUrl}" 
+                alt="${description || ''}" 
+                class="content-image"
+                loading="lazy"
+              />
+            </div>
+          `;
+        }
+        return '';
       case INLINES.HYPERLINK:
-        return `<a href="${node.data.uri}" target="_blank" rel="noopener noreferrer">${children}</a>`;
+        if (node.data?.uri) {
+          return `<a href="${node.data.uri}" target="_blank" rel="noopener noreferrer">${children}</a>`;
+        }
+        return children;
       case INLINES.ENTRY_HYPERLINK:
-        const slug = node.data.target.fields.slug;
-        return `<a href="${baseUrl}/${slug}">${children}</a>`;
+        if (node.data?.target?.fields?.slug) {
+          const slug = node.data.target.fields.slug;
+          return `<a href="${baseUrl}/${slug}">${children}</a>`;
+        }
+        return children;
       default:
         return children;
     }
   }
 
   // Convert rich text to HTML string
-  const contentHtml = renderRichTextToHtml(page.content);
+  const contentHtml = page.content ? renderRichTextToHtml(page.content) : '';
   
   return `
     <div class="page-section">
