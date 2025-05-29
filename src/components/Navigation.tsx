@@ -86,6 +86,28 @@ export default function Navigation() {
           <h4 style={{ color: '#c99' }}>Rinse and Repeat</h4>
         </Link>
         <hr style={{ margin: '8px 0' }} />
+        
+        <div style={{ padding: '4px 0' }}>
+          <a 
+            href="/api/export-pdf"
+            download="Product-Primer-by-Aapo-Kojo.pdf"
+            style={{
+              color: '#666',
+              textDecoration: 'none',
+              display: 'block',
+              padding: '4px 0',
+              fontSize: '0.85em'
+            }}
+            onClick={toggleMenu}
+          >
+            <div style={{ fontFamily: '"Shippori Mincho", serif', fontWeight: 600, margin: 0 }}>
+              Download as PDF
+            </div>
+            <div style={{ color: '#999', margin: 0, fontSize: '0.9em' }}>
+              Complete booklet
+            </div>
+          </a>
+        </div>
         <br />
       </nav>
     </>
