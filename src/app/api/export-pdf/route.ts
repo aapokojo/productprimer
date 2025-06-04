@@ -309,11 +309,11 @@ function getPdfStyles(): string {
     .toc-pdf li{margin-bottom:10px;padding:6px;border-bottom:1px solid #eee}
     .page-num{font-weight:600;color:#c99;margin-right:6px}
     .page-title{font-weight:600;color:#422;display:inline}
-    .page-subtitle{font-size:8.5pt;color:#666;font-style:italic;display:block;margin-top:4px}
+    .toc-pdf .page-subtitle{font-size:8.5pt;color:#666;font-style:italic;display:block;margin-top:8px}
     .page-section{margin-bottom:18px}
     .page-break{page-break-before:always}
     .page-title{font-family:'Shippori Mincho',serif;font-weight:700;font-size:17pt;margin-bottom:6px;color:#000!important}
-    .page-subtitle{font-family:'Inter',sans-serif;font-weight:600;font-size:9.5pt;color:#c99!important;margin-bottom:18px;margin-top:-6px}
+    .page-subtitle{font-family:'Inter',sans-serif;font-weight:600;font-size:9.5pt;color:#c99!important;margin-bottom:18px;margin-top:6px}
     h1,h2,h3{font-family:'Shippori Mincho',serif;font-weight:700;color:#000!important}
     h1{font-size:15pt;margin:18px 0 8px 0;color:#000!important}
     h2{font-size:13pt;margin:14px 0 6px 0;color:#000!important}
