@@ -99,7 +99,7 @@ export default function Navigation() {
               padding: '4px 0',
               fontSize: '0.85em'
             }}
-            onClick={(e) => {
+            onClick={() => {
               trackPdfDownload('Product-Primer-by-Aapo-Kojo.pdf', 'navigation_menu');
               toggleMenu();
             }}

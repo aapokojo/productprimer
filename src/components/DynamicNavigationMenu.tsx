@@ -96,7 +96,7 @@ export default function DynamicNavigation({ pages }: DynamicNavigationProps) {
               padding: '4px 0',
               fontSize: '0.85em'
             }}
-            onClick={(e) => {
+            onClick={() => {
               trackPdfDownload('Product-Primer-by-Aapo-Kojo.pdf', 'dynamic_navigation_menu');
               toggleMenu();
             }}
