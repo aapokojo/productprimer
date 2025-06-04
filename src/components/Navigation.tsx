@@ -6,9 +6,35 @@ import { trackPdfDownload } from '@/lib/analytics';
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isGeneratingPdf, setIsGeneratingPdf] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handlePdfDownload = async () => {
+    setIsGeneratingPdf(true);
+    trackPdfDownload('Product-Primer-by-Aapo-Kojo.pdf', 'navigation_menu');
+    
+    try {
+      const response = await fetch('/api/export-pdf');
+      if (response.ok) {
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'Product-Primer-by-Aapo-Kojo.pdf';
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+        document.body.removeChild(a);
+      }
+    } catch (error) {
+      console.error('Error downloading PDF:', error);
+    } finally {
+      setIsGeneratingPdf(false);
+      toggleMenu();
+    }
   };
 
   useEffect(() => {
@@ -89,28 +115,39 @@ export default function Navigation() {
         <hr style={{ margin: '8px 0' }} />
         
         <div style={{ padding: '4px 0' }}>
-          <a 
-            href="/api/export-pdf"
-            download="Product-Primer-by-Aapo-Kojo.pdf"
+          <button 
+            disabled={isGeneratingPdf}
             style={{
-              color: '#666',
+              color: isGeneratingPdf ? '#999' : '#666',
+              backgroundColor: 'transparent',
+              border: 'none',
               textDecoration: 'none',
               display: 'block',
               padding: '4px 0',
-              fontSize: '0.85em'
+              fontSize: '0.85em',
+              cursor: isGeneratingPdf ? 'wait' : 'pointer',
+              width: '100%',
+              textAlign: 'left'
             }}
-            onClick={() => {
-              trackPdfDownload('Product-Primer-by-Aapo-Kojo.pdf', 'navigation_menu');
-              toggleMenu();
-            }}
+            onClick={handlePdfDownload}
           >
-            <div style={{ fontFamily: '"Shippori Mincho", serif', fontWeight: 600, margin: 0 }}>
-              Download as PDF
+            <div style={{ fontFamily: '"Shippori Mincho", serif', fontWeight: 600, margin: 0, display: 'flex', alignItems: 'center', gap: '8px' }}>
+              {isGeneratingPdf && (
+                <div style={{
+                  width: '12px',
+                  height: '12px',
+                  border: '2px solid #c99',
+                  borderTop: '2px solid transparent',
+                  borderRadius: '50%',
+                  animation: 'spin 1s linear infinite'
+                }} />
+              )}
+              {isGeneratingPdf ? 'Generating PDF...' : 'Download as PDF'}
             </div>
             <div style={{ color: '#999', margin: 0, fontSize: '0.9em' }}>
-              Complete booklet
+              {isGeneratingPdf ? '' : 'Complete booklet'}
             </div>
-          </a>
+          </button>
         </div>
         <br />
       </nav>

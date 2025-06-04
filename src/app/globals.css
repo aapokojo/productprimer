@@ -253,3 +253,9 @@ table td {
   vertical-align: top !important;
   padding: 8px 10px !important;
 }
+
+/* PDF generation spinner animation */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

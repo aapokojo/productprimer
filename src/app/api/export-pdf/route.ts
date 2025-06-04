@@ -170,7 +170,7 @@ async function generateBookletHtml(baseUrl: string): Promise<string> {
               <ul>
                 ${pages.map(page => `
                   <li>
-                    <span class="page-num">${page.pageNumber}.</span>
+                    <span class="page-num">${page.pageNumber}. </span>
                     <span class="page-title">${page.header}</span>
                     <span class="page-subtitle">${page.subHeader}</span>
                   </li>
@@ -308,8 +308,8 @@ function getPdfStyles(): string {
     .toc-pdf ul{list-style:none}
     .toc-pdf li{margin-bottom:10px;padding:6px;border-bottom:1px solid #eee}
     .page-num{font-weight:600;color:#c99;margin-right:6px}
-    .page-title{font-weight:600;color:#422;display:block}
-    .page-subtitle{font-size:8.5pt;color:#666;font-style:italic;display:block;margin-top:1px}
+    .page-title{font-weight:600;color:#422;display:inline}
+    .page-subtitle{font-size:8.5pt;color:#666;font-style:italic;display:block;margin-top:4px}
     .page-section{margin-bottom:18px}
     .page-break{page-break-before:always}
     .page-title{font-family:'Shippori Mincho',serif;font-weight:700;font-size:17pt;margin-bottom:6px;color:#000!important}
