@@ -43,11 +43,15 @@ export async function GET(request: NextRequest) {
             '--disable-web-security',
             '--no-zygote',
             '--single-process',
+            '--disable-extensions',
+            '--disable-plugins',
           ],
       defaultViewport: chromium.defaultViewport,
       executablePath: isProduction 
         ? await chromium.executablePath()
-        : undefined,
+        : process.platform === 'darwin' 
+          ? '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
+          : '/usr/bin/google-chrome',
       headless: chromium.headless,
     });
 
@@ -69,6 +73,9 @@ export async function GET(request: NextRequest) {
       waitUntil: 'networkidle0',
       timeout: 60000 // Increased timeout for serverless
     });
+
+    // Add a delay to ensure images are fully loaded
+    await new Promise(resolve => setTimeout(resolve, 3000));
 
     // Generate PDF with optimized settings for smaller file size
     const pdfBuffer = await page.pdf({
@@ -92,9 +99,11 @@ export async function GET(request: NextRequest) {
           <span class="pageNumber"></span> of <span class="totalPages"></span>
         </div>
       `,
-      // Optimize for smaller file size
+      // Optimize for smaller file size with better compression
       tagged: false, // Disable accessibility tagging to reduce size
       timeout: 60000, // Increased timeout for PDF generation
+      // Additional optimization options
+      omitBackground: true, // Remove page background to reduce size
     });
 
     await browser.close();
@@ -146,7 +155,7 @@ async function generateBookletHtml(baseUrl: string): Promise<string> {
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <!-- Load only essential font weights to reduce size -->
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Shippori+Mincho:wght@600;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Shippori+Mincho:wght@600;700&display=swap&text=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789%20.,!?-:;" rel="stylesheet">
         <style>
           ${getPdfStyles()}
         </style>
@@ -236,16 +245,20 @@ async function renderPageContent(page: PageContent, baseUrl: string): Promise<st
         if (node.data?.target?.fields) {
           const fields = node.data.target.fields as AssetFields;
           const { file, description } = fields;
-          // Optimize image for PDF by using smaller dimensions and quality
+          // Optimize image for PDF with better quality and ensure HTTPS
           const originalUrl = file.url;
-          const optimizedUrl = `${originalUrl}?w=600&q=60&fm=webp`; // Compress to 600px width, 60% quality, WebP format
+          // Ensure URL starts with https:// and optimize for PDF
+          const fullUrl = originalUrl.startsWith('//') ? `https:${originalUrl}` : originalUrl;
+          const optimizedUrl = `${fullUrl}?w=800&q=80&fm=jpg&fit=pad&bg=rgb:ffffff`; // Better quality, ensure proper format
+          console.log(`Processing image: ${optimizedUrl}`);
           return `
             <div class="image-wrapper">
               <img 
-                src="https:${optimizedUrl}" 
+                src="${optimizedUrl}" 
                 alt="${description || ''}" 
                 class="content-image"
-                loading="lazy"
+                style="max-width: 100%; height: auto; display: block; margin: 0 auto;"
+                onerror="console.log('Image failed to load: ${optimizedUrl}')"
               />
             </div>
           `;
@@ -284,39 +297,39 @@ async function renderPageContent(page: PageContent, baseUrl: string): Promise<st
 
 function getPdfStyles(): string {
   return `
-    *{box-sizing:border-box}
-    body{font-family:'Inter',sans-serif;font-size:11pt;line-height:1.5;margin:0;padding:0}
-    .booklet-container{max-width:100%;margin:0;padding:0}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Inter',sans-serif;font-size:11pt;line-height:1.4;color:#000}
+    .booklet-container{max-width:100%}
     .title-page{text-align:center;page-break-after:always;padding:40px 0}
-    .title-page h1{font-family:'Shippori Mincho',serif;font-weight:700;font-size:28pt;margin-bottom:10px}
-    .title-page h2{font-family:'Shippori Mincho',serif;font-weight:600;font-size:16pt;margin-bottom:40px}
-    .toc-pdf{text-align:left;margin:40px auto;max-width:400px}
-    .toc-pdf h3{font-family:'Shippori Mincho',serif;font-weight:700;font-size:14pt;margin-bottom:20px;color:#422}
-    .toc-pdf ul{list-style:none;padding:0;margin:0}
-    .toc-pdf li{margin-bottom:12px;padding:8px;border-bottom:1px solid #eee}
-    .page-num{font-weight:600;color:#c99;margin-right:8px}
+    .title-page h1{font-family:'Shippori Mincho',serif;font-weight:700;font-size:26pt;margin-bottom:8px;color:#000}
+    .title-page h2{font-family:'Shippori Mincho',serif;font-weight:700;font-size:15pt;margin-bottom:35px;color:#000}
+    .toc-pdf{text-align:left;margin:35px auto;max-width:380px}
+    .toc-pdf h3{font-family:'Shippori Mincho',serif;font-weight:700;font-size:13pt;margin-bottom:18px;color:#422}
+    .toc-pdf ul{list-style:none}
+    .toc-pdf li{margin-bottom:10px;padding:6px;border-bottom:1px solid #eee}
+    .page-num{font-weight:600;color:#c99;margin-right:6px}
     .page-title{font-weight:600;color:#422;display:block}
-    .page-subtitle{font-size:9pt;color:#666;font-style:italic;display:block;margin-top:2px}
-    .page-section{margin-bottom:20px}
+    .page-subtitle{font-size:8.5pt;color:#666;font-style:italic;display:block;margin-top:1px}
+    .page-section{margin-bottom:18px}
     .page-break{page-break-before:always}
-    .page-title{font-family:'Shippori Mincho',serif;font-weight:700;font-size:18pt;margin-bottom:8px}
-    .page-subtitle{font-family:'Inter',sans-serif;font-weight:600;font-size:10pt;color:#c99;margin-bottom:20px;margin-top:-8px}
-    h1,h2,h3{font-family:'Shippori Mincho',serif;font-weight:700}
-    h1{font-size:16pt;margin:20px 0 10px 0}
-    h2{font-size:14pt;margin:16px 0 8px 0}
-    h3{font-size:12pt;margin:12px 0 6px 0}
-    h4{color:#c99;font-weight:600}
-    .content-text,p{font-family:'Inter',sans-serif;font-size:10pt;line-height:1.5;margin:0 0 8px 0}
-    .image-wrapper{text-align:center;margin:16px 0;page-break-inside:avoid}
-    .content-image{max-width:80%;height:auto;max-height:250px;object-fit:contain;display:block;margin:0 auto}
-    .content-table{width:100%;border-collapse:collapse;margin:12px 0;font-size:8pt;page-break-inside:avoid}
-    .content-table th,.content-table td{border:1px solid #ddd;padding:4px 6px;text-align:left;vertical-align:top}
-    .content-table th{background-color:#f8f8f8;font-weight:600}
-    ul,ol{margin:8px 0;padding-left:20px}
-    li{margin-bottom:4px}
-    a{text-decoration:underline}
+    .page-title{font-family:'Shippori Mincho',serif;font-weight:700;font-size:17pt;margin-bottom:6px;color:#000!important}
+    .page-subtitle{font-family:'Inter',sans-serif;font-weight:600;font-size:9.5pt;color:#c99!important;margin-bottom:18px;margin-top:-6px}
+    h1,h2,h3{font-family:'Shippori Mincho',serif;font-weight:700;color:#000!important}
+    h1{font-size:15pt;margin:18px 0 8px 0;color:#000!important}
+    h2{font-size:13pt;margin:14px 0 6px 0;color:#000!important}
+    h3{font-size:11pt;margin:10px 0 4px 0;color:#000!important}
+    h4{color:#c99!important;font-weight:600;font-size:9.5pt;font-family:'Inter',sans-serif!important;margin-top:-6px}
+    .content-text,p{font-family:'Inter',sans-serif;font-size:10pt;line-height:1.4;margin:0 0 6px 0;color:#000}
+    .image-wrapper{text-align:center;margin:12px 0;page-break-inside:avoid}
+    .content-image{max-width:75%;height:auto;max-height:220px;object-fit:contain;display:block;margin:0 auto}
+    .content-table{width:100%;border-collapse:collapse;margin:10px 0;font-size:7.5pt;page-break-inside:avoid}
+    .content-table th,.content-table td{border:1px solid #ccc;padding:3px 5px;text-align:left;vertical-align:top}
+    .content-table th{background:#f5f5f5;font-weight:600}
+    ul,ol{margin:6px 0;padding-left:18px}
+    li{margin-bottom:3px}
+    a{text-decoration:underline;color:#000}
     strong{font-weight:600}
     em{font-style:italic}
-    @page{margin:20mm 15mm}
+    @page{margin:18mm 13mm}
   `;
 }

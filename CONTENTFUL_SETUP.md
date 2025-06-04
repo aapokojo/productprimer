@@ -102,9 +102,9 @@ src/
 #### Environment Variables:
 ```bash
 # .env.local (already configured)
-CONTENTFUL_SPACE_ID=your_space_id_here
+CONTENTFUL_SPACE_ID=your-space-id
 CONTENTFUL_ENVIRONMENT=master
-CONTENTFUL_ACCESS_TOKEN=your_api_key_here
+CONTENTFUL_ACCESS_TOKEN=your-content-delivery-api-token
 ```
 
 ### 4. Benefits After Setup

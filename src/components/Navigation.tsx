@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { trackPdfDownload } from '@/lib/analytics';
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -98,7 +99,10 @@ export default function Navigation() {
               padding: '4px 0',
               fontSize: '0.85em'
             }}
-            onClick={toggleMenu}
+            onClick={(e) => {
+              trackPdfDownload('Product-Primer-by-Aapo-Kojo.pdf', 'navigation_menu');
+              toggleMenu();
+            }}
           >
             <div style={{ fontFamily: '"Shippori Mincho", serif', fontWeight: 600, margin: 0 }}>
               Download as PDF
